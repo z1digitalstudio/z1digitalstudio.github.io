@@ -64,8 +64,8 @@ $(document).ready( function() {
   var cityValue;
   var locationValue;
   var dateValue;
-  var min = 0;
-  var max = 18;
+  var minR = 0;
+  var maxR = 18;
  
 	
   const $grid = $('.grid').isotope({
@@ -82,13 +82,6 @@ $(document).ready( function() {
   $grid.addClass('is-showing-items').isotope( 'revealItemElements', $items );
   
 	
-  var filterFns = {
-    range: function() {
-      var upAge = $('.card').find('.up-age').text();
-      var downAge = $('.card').find('.down-age').text();
-      return parseInt( upAge, 10 ) <= max && parseInt( downAge, 10 ) >= min;
-    }
-  };
   $(function() {
       var options = {
           range: true,
@@ -96,21 +89,21 @@ $(document).ready( function() {
           max: 18,
           values: [0, 18],
           slide: function(event, ui) {
-              min = ui.values[0],
-              max = ui.values[1];
-              $(".age-range").text( min + " - " + max);
+              minR = ui.values[0],
+              maxR = ui.values[1];
+              $(".age-range").text( minR + " - " + maxR);
+              $checkbox = $("#slider-range");
+    					manageCheckbox( $checkbox );
               comboFilter = getComboFilter( filters );
               $grid.isotope();
               counterFindCourses();
-	      console.log('f');
           }
       }, min, max;
-      console.log('f2');
       $("#slider-range").slider(options);
       min = $("#slider-range").slider("values", 0);
       max = $("#slider-range").slider("values", 1);
       $(".age-range").text( min + " - " + max);
-  });	
+  });
 	
 
   if(filterCourse != null){
@@ -216,8 +209,8 @@ $(document).ready( function() {
     var i = 0;
     var comboFilters = [];
     var message = [];
+    var allage = [];
     for ( var prop in filters ) {
-      console.log('prop',prop);  
       if ( prop == 'age'){
       	filters[prop] = [ageValue];
       }else if( prop == 'city' ){
@@ -226,6 +219,12 @@ $(document).ready( function() {
       	filters[prop] = [dateValue];
       }else if(prop == 'location'){
       	filters[prop] = [locationValue];
+      }else if (prop == 'range'){
+      	allage = [];
+        for(var m=minR; m <= maxR; m++){
+        	allage.push('.'+m);
+        }
+      	filters[prop] = allage;
       }
       message.push( filters[ prop ].join(' ') );
       var filterGroup = filters[ prop ];
@@ -299,7 +298,7 @@ $(document).ready( function() {
   }
 	function counterFindCourses() {
   	var countCourse = 0;
-    var styles;
+   	 var styles;
   	$('#courses-list .card-item').each(function(idx,element){
       styles = $(element)[0].attributes[1].nodeValue;
       if(styles.indexOf("opacity: 0") > -1 || styles.indexOf("display: none") > -1){
