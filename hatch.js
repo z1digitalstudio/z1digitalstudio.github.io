@@ -93,7 +93,7 @@ $(document).ready( function() {
               maxR = ui.values[1];
               $(".age-range").text( minR + " - " + maxR);
               $checkbox = $("#slider-range");
-    					manageCheckbox( $checkbox );
+    	      manageCheckbox( $checkbox );
               comboFilter = getComboFilter( filters );
               $grid.isotope();
               counterFindCourses();
@@ -228,8 +228,7 @@ $(document).ready( function() {
       }
       message.push( filters[ prop ].join(' ') );
       var filterGroup = filters[ prop ];
-      // skip to next filter group if it doesn't have any values
-      filterGroup = filterFns[ filterGroup ] || filterGroup;
+      // skip to next filter group if it doesn't have any value
       if ( !filterGroup.length ) {
         continue;
       }
