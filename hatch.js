@@ -1,6 +1,5 @@
 $(document).ready( function() {
   var selectcity = $('#field-4');
-  var selectage = $('#field-2');
   var selectdate = $('#field-3');
   var selectlocationA = $('#austin-texas');
   var selectlocationD = $('#dallas');
@@ -8,7 +7,6 @@ $(document).ready( function() {
   var courses = $('#courses-list .card');
   var listcity = $('#city-list span');
   var listloc = $('#location-list span');
-  var listage = $('#age-list span');
   var listdate = $('#date-list span');
   var allType = jQuery.parseJSON('[]');
   var count = courses.length;
@@ -23,10 +21,6 @@ $(document).ready( function() {
   listcity.each(function(idx, element){
    var sc = jQuery.parseJSON($(element).text())
    selectcity.append('<option value="' + sc.value +'" >'+ sc.name +'</option>')
-  })
-  listage.each(function(idx, element){
-   var sa = jQuery.parseJSON($(element).text())
-   selectage.append('<option value="' + sa.value +'" >'+ sa.name +'</option>')
   })
   listdate.each(function(idx, element){
    var sd = jQuery.parseJSON($(element).text())
@@ -60,7 +54,6 @@ $(document).ready( function() {
   let buttonFilter;
   var filters = {};
   var comboFilter;
-  var ageValue;
   var cityValue;
   var locationValue;
   var dateValue;
@@ -135,7 +128,6 @@ $(document).ready( function() {
   $('#filters-courses').on( 'change', function( event ) {
     var $checkbox = $( event.target );
     manageCheckbox( $checkbox );
-    ageValue = $('.age-select')[0].value;
     cityValue = $('.city-select')[0].value;
     if( cityValue != '*'){
       $('.location-select' + cityValue).css('display','block');
@@ -211,9 +203,7 @@ $(document).ready( function() {
     var message = [];
     var allage = [];
     for ( var prop in filters ) {
-      if ( prop == 'age'){
-      	filters[prop] = [ageValue];
-      }else if( prop == 'city' ){
+     if( prop == 'city' ){
       	filters[prop] = [cityValue];
       }else if( prop == 'date' ){
       	filters[prop] = [dateValue];
