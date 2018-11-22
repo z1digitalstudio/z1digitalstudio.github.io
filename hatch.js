@@ -103,7 +103,7 @@ $(document).ready( function() {
               $grid.isotope();
               counterFindCourses();
           }
-          console.log('f');
+          console.log('f')
       }, min, max;
       $("#slider-range").slider(options);
       min = $("#slider-range").slider("values", 0);
@@ -216,7 +216,8 @@ $(document).ready( function() {
     var comboFilters = [];
     var message = [];
     for ( var prop in filters ) {
-    	if ( prop == 'age'){
+      console.log('prop',prop);  
+      if ( prop == 'age'){
       	filters[prop] = [ageValue];
       }else if( prop == 'city' ){
       	filters[prop] = [cityValue];
@@ -228,7 +229,7 @@ $(document).ready( function() {
       message.push( filters[ prop ].join(' ') );
       var filterGroup = filters[ prop ];
       // skip to next filter group if it doesn't have any values
-     
+      filterGroup = filterFns[ filterGroup ] || filterGroup;
       if ( !filterGroup.length ) {
         continue;
       }
