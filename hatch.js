@@ -84,7 +84,7 @@ $(document).ready( function() {
           slide: function(event, ui) {
               minR = ui.values[0],
               maxR = ui.values[1];
-              $(".age-range").text( "From " minR + " to " + maxR);
+              $(".age-range").text( "From " + minR + " to " + maxR);
               $checkbox = $("#slider-range");
     	      manageCheckbox( $checkbox );
               comboFilter = getComboFilter( filters );
@@ -95,7 +95,7 @@ $(document).ready( function() {
       $("#slider-range").slider(options);
       min = $("#slider-range").slider("values", 0);
       max = $("#slider-range").slider("values", 1);
-      $(".range-info--text.age-range").text("From " min + " to " + max);
+      $(".range-info--text.age-range").text("From " + min + " to " + max);
   });
 	
 
