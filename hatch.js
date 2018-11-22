@@ -64,6 +64,8 @@ $(document).ready( function() {
   var cityValue;
   var locationValue;
   var dateValue;
+  var min = 0;
+  var max = 18;
  
 	
   const $grid = $('.grid').isotope({
@@ -79,8 +81,39 @@ $(document).ready( function() {
   const $items = $grid.find('.w-dyn-item');
   $grid.addClass('is-showing-items').isotope( 'revealItemElements', $items );
   
-	if(filterCourse != null){
-  	$('#' + filterCourse)[0].checked = true;
+	
+  var filterFns = {
+    range: function() {
+      var upAge = $('.card').find('.up-age').text();
+      var downAge = $('.card').find('.down-age').text();
+      return parseInt( upAge, 10 ) <= max && parseInt( downAge, 10 ) >= min;
+    }
+  };
+  $(function() {
+      var options = {
+          range: true,
+          min: 0,
+          max: 18,
+          values: [0, 18],
+          slide: function(event, ui) {
+              min = ui.values[0],
+              max = ui.values[1];
+              $(".age-range").text( min + " - " + max);
+              comboFilter = getComboFilter( filters );
+              $grid.isotope();
+              counterFindCourses();
+          }
+          console.log('f');
+      }, min, max;
+      $("#slider-range").slider(options);
+      min = $("#slider-range").slider("values", 0);
+      max = $("#slider-range").slider("values", 1);
+      $(".age-range").text( min + " - " + max);
+  });	
+	
+
+  if(filterCourse != null){
+    $('#' + filterCourse)[0].checked = true;
     filters['type'] = ['.'+filterCourse];
     comboFilter = getComboFilter( filters );
     $grid.isotope();
