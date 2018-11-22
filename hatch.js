@@ -224,6 +224,9 @@ $(document).ready( function() {
         for(var m=minR; m <= maxR; m++){
         	allage.push('.'+m);
         }
+	if(allage.length == 19){
+		allage = [];
+	}
       	filters[prop] = allage;
       }
       message.push( filters[ prop ].join(' ') );
