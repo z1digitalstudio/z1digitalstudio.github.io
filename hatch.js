@@ -95,7 +95,7 @@ $(document).ready( function() {
       $("#slider-range").slider(options);
       min = $("#slider-range").slider("values", 0);
       max = $("#slider-range").slider("values", 1);
-      $(".age-range").text( min + " - " + max);
+      $(".range-info--text.age-range").text( min + " to " + max);
   });
 	
 
