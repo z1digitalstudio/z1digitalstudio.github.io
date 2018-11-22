@@ -102,9 +102,10 @@ $(document).ready( function() {
               comboFilter = getComboFilter( filters );
               $grid.isotope();
               counterFindCourses();
+	      console.log('f');
           }
-          console.log('f')
       }, min, max;
+      console.log('f2');
       $("#slider-range").slider(options);
       min = $("#slider-range").slider("values", 0);
       max = $("#slider-range").slider("values", 1);
