@@ -1,6 +1,5 @@
 $(document).ready( function() {
   var selectcity = $('#field-4');
-  var selectdate = $('#field-3');
   var selectlocationA = $('#austin-texas');
   var selectlocationD = $('#dallas');
   var listType = $('#list-type .type-image-url');
@@ -21,10 +20,6 @@ $(document).ready( function() {
   listcity.each(function(idx, element){
    var sc = jQuery.parseJSON($(element).text())
    selectcity.append('<option value="' + sc.value +'" >'+ sc.name +'</option>')
-  })
-  listdate.each(function(idx, element){
-   var sd = jQuery.parseJSON($(element).text())
-   selectdate.append('<option value="' + sd.value +'" >'+ sd.name +'</option>')
   })
   listloc.each(function(idx, element){
    var sl = jQuery.parseJSON($(element).text())
@@ -56,9 +51,10 @@ $(document).ready( function() {
   var comboFilter;
   var cityValue;
   var locationValue;
-  var dateValue;
   var minR = 0;
   var maxR = 18;
+  var dateMin;
+  var dateMax;
  
 	
   const $grid = $('.grid').isotope({
@@ -97,7 +93,41 @@ $(document).ready( function() {
       max = $("#slider-range").slider("values", 1);
       $(".range-info--text.age-range").text("From " + min + " to " + max);
   });
+ 	
 	
+$(function() {
+
+  $('input[name="daterange"]').daterangepicker({
+      autoUpdateInput: false,
+      locale: {
+          cancelLabel: 'Clear'
+      },
+      opens: 'right',
+  });
+
+  $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('M-D-YYYY') + ' - ' + picker.endDate.format('M-D-YYYY'));
+ 			dateMin = picker.startDate.format('M-D-YYYY');
+      dateMax = picker.endDate.format('M-D-YYYY');
+      $checkbox = $("#daterange");
+    manageCheckbox( $checkbox );
+    comboFilter = getComboFilter( filters );
+    $grid.isotope();
+    counterFindCourses();
+ });
+
+  $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
+      $(this).val('');
+      dateMin = undefined;
+      dateMax = undefined;
+      $checkbox = $("#daterange");
+    manageCheckbox( $checkbox );
+    comboFilter = getComboFilter( filters );
+    $grid.isotope();
+    counterFindCourses();
+  });
+
+});
 
   if(filterCourse != null){
     $('#' + filterCourse)[0].checked = true;
@@ -141,7 +171,6 @@ $(document).ready( function() {
       $('.location-select').val('*')
     }
   	locationValue = $('.location-select'+cityValue)[0].value;
-    dateValue = $('.date-select')[0].value;
     comboFilter = getComboFilter( filters );
     $grid.isotope();
     counterFindCourses();
@@ -205,8 +234,6 @@ $(document).ready( function() {
     for ( var prop in filters ) {
      if( prop == 'city' ){
       	filters[prop] = [cityValue];
-      }else if( prop == 'date' ){
-      	filters[prop] = [dateValue];
       }else if(prop == 'location'){
       	filters[prop] = [locationValue];
       }else if (prop == 'range'){
@@ -218,6 +245,13 @@ $(document).ready( function() {
 		allage = [];
 	}
       	filters[prop] = allage;
+      }else if(prop == 'date'){
+        if(dateMax == undefined && dateMin == undefined){
+        	filters[prop] = [];
+        }else{
+        filters[prop] = getDates(dateMin,dateMax);
+        }
+      
       }
       message.push( filters[ prop ].join(' ') );
       var filterGroup = filters[ prop ];
@@ -301,4 +335,14 @@ $(document).ready( function() {
     textCount.textContent = count + ' Courses found';
   }
 
+  function getDates(startDate, stopDate) {
+    var dateArray = [];
+    var currentDate = moment(startDate);
+    var stopDate = moment(stopDate);
+    while (currentDate <= stopDate) {
+        dateArray.push('.'+ moment(currentDate).format('M-D-YYYY') )
+        currentDate = moment(currentDate).add(1, 'days');
+    }
+    return dateArray;
+}
 });
