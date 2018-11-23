@@ -50,8 +50,8 @@ $(document).ready( function() {
   var comboFilter;
   var cityValue;
   var locationValue;
-  var minR = 0;
-  var maxR = 18;
+  var minR = 5;
+  var maxR = 15;
   var dateMin;
   var dateMax;
  
@@ -73,9 +73,9 @@ $(document).ready( function() {
   $(function() {
       var options = {
           range: true,
-          min: 0,
-          max: 18,
-          values: [0, 18],
+          min: 5,
+          max: 15,
+          values: [5, 15],
           slide: function(event, ui) {
               minR = ui.values[0],
               maxR = ui.values[1];
