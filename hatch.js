@@ -31,7 +31,7 @@ $(document).ready( function() {
   })
   $('.w-dyn-item .filters-type').each(function(index, element) {
    var _this = $( element );
-   _this.parent().parent().addClass( _this.text().toLowerCase().replace(',','').replace(' /','').replace(' &','').replace(/ /g, '-'));
+   _this.parent().parent().addClass( _this.text().toLowerCase().replace(',','').replace(' /','').replace(/\//g,'-').replace(' &','').replace(/ /g, '-'));
   });
   $('.w-dyn-item .level').each(function(index, element) {
   		var _this = $( element );
