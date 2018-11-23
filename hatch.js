@@ -6,7 +6,6 @@ $(document).ready( function() {
   var courses = $('#courses-list .card');
   var listcity = $('#city-list span');
   var listloc = $('#location-list span');
-  var listdate = $('#date-list span');
   var allType = jQuery.parseJSON('[]');
   var count = courses.length;
   var textCount = document.createElement('span');
