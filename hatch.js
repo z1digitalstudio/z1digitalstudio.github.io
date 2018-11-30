@@ -55,6 +55,7 @@ $(document).ready( function() {
   var filters = {};
   var comboFilter;
   var cityValue;
+  var campValue;
   var locationValue;
   var minR = 5;
   var maxR = 15;
@@ -164,6 +165,7 @@ $(function() {
     var $checkbox = $( event.target );
     manageCheckbox( $checkbox );
     cityValue = $('.city-select')[0].value;
+    campValue = $('.camp-select')[0].value;  
     if( cityValue != '*'){
       $('.location-select' + cityValue).css('display','block');
       $('.location-select:not(' + cityValue + ')').val('*');
@@ -241,6 +243,8 @@ $(function() {
       	filters[prop] = [cityValue];
       }else if(prop == 'location'){
       	filters[prop] = [locationValue];
+      }else if(prop == 'camp'){
+      	filters[prop] = [campValue];
       }else if (prop == 'range'){
       	allage = [];
         for(var m=minR; m <= maxR; m++){
