@@ -1,10 +1,12 @@
 $(document).ready( function() {
   var selectcity = $('#field-4');
+  var selectcamp = $('#field-camp');
   var selectlocationA = $('#austin-texas');
   var selectlocationD = $('#dallas');
   var listType = $('#list-type .type-image-url');
   var courses = $('#courses-list .card');
   var listcity = $('#city-list span');
+  var listcamp = $('#season-list');
   var listloc = $('#location-list span');
   var allType = jQuery.parseJSON('[]');
   var count = courses.length;
@@ -19,6 +21,10 @@ $(document).ready( function() {
   listcity.each(function(idx, element){
    var sc = jQuery.parseJSON($(element).text())
    selectcity.append('<option value="' + sc.value +'" >'+ sc.name +'</option>')
+  })
+  listcamp.each(function(idx, element){
+   var scamp = jQuery.parseJSON($(element).text())
+   selectcamp.append('<option value="' + scamp.value +'" >'+ scamp.name +'</option>')
   })
   listloc.each(function(idx, element){
    var sl = jQuery.parseJSON($(element).text())
