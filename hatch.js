@@ -6,7 +6,7 @@ $(document).ready( function() {
   var listType = $('#list-type .type-image-url');
   var courses = $('#courses-list .card');
   var listcity = $('#city-list span');
-  var listcamp = $('#season-list');
+  var listcamp = $('#season-list span');
   var listloc = $('#location-list span');
   var allType = jQuery.parseJSON('[]');
   var count = courses.length;
