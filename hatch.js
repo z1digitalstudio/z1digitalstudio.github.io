@@ -28,9 +28,6 @@ $(document).ready( function() {
   })
   listloc.each(function(idx, element){
    var sl = jQuery.parseJSON($(element).text())
-   console.log(sl.hidden);
-   console.log(sl.hidden == false);
-	  console.log(sl.hidden == 'false');
    if(sl.city == 'dallas' && sl.hidden == 'false'){
     selectlocationD.append('<option value="' + sl.value +'" >'+ sl.name +'</option>')
    }else if(sl.city == 'austin-texas' && sl.hidden == 'false'){
