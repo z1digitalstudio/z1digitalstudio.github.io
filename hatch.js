@@ -341,6 +341,11 @@ $(function() {
       }
     })
     count = courses.length - countCourse;
+    if(count == 0){
+    	$('.camps_info--block').removeClass('hide')
+    }else{
+    	$('.camps_info--block').addClass('hide')
+    }
     textCount.textContent = count + ' Courses found';
   }
 
