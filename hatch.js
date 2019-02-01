@@ -341,7 +341,8 @@ $(function() {
       }
     })
     count = courses.length - countCourse;
-    if(count == 0){
+    let fullDay = $($('input[name="full-day"]:checked'))
+    if(count == 0 && fullDay.length > 0){
     	$('.camps_info--block').removeClass('hide')
     }else{
     	$('.camps_info--block').addClass('hide')
