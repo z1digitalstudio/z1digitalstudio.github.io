@@ -38,10 +38,15 @@ $(document).ready( function() {
    var _this = $( element );
    _this.parent().parent().addClass( _this.text().toLowerCase().replace(',','').replace(' /','').replace(/\//g,'-').replace(' &','').replace(/ /g, '-'));
   });
-  $('.w-dyn-item .level:not(.w-condition-invisible)').each(function(index, element) {
+  $('.w-dyn-item .tabs-camps.level:not(.w-condition-invisible)').each(function(index, element) {
   		var _this = $( element );
       // lowercase, hyphenate and add as a class to dyn-item for isotope filtering
   		_this.parent().parent().parent().parent().parent().addClass( _this.text().toLowerCase().replace(/\//g,'-').replace(/ /g, '-'));
+  });
+  $('.w-dyn-item .tabs-camps .level:not(.w-condition-invisible)').each(function(index, element) {
+  		var _this = $( element );
+      // lowercase, hyphenate and add as a class to dyn-item for isotope filtering
+  		_this.parent().parent().parent().parent().parent().parent().parent().addClass( _this.text().toLowerCase().replace(/\//g,'-').replace(/ /g, '-'));
   });
   
   $('.location-select.austin-texas').prop('disabled', 'disabled');
