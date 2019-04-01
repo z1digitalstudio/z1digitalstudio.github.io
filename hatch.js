@@ -48,6 +48,13 @@ $(document).ready( function() {
       // lowercase, hyphenate and add as a class to dyn-item for isotope filtering
   		_this.parent().parent().parent().parent().parent().parent().parent().addClass( _this.text().toLowerCase().replace(/\//g,'-').replace(/ /g, '-'));
   });
+ var listFilters = $('.filters-card-elements span');
+  listFilters.each(function(idx, element){
+      var all = jQuery.parseJSON($(element).text());
+      $(element).parent().parent().parent().addClass(all.city);
+      $(element).parent().parent().parent().addClass(all.location);
+      $(element).parent().parent().parent().addClass(all.camp);
+     })
   
   $('.location-select.austin-texas').prop('disabled', 'disabled');
   var urlParams = new URLSearchParams(window.location.search);
