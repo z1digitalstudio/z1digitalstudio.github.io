@@ -176,20 +176,24 @@ $(function() {
   $('#filters-courses').on( 'change', function( event ) {
     var $checkbox = $( event.target );
     manageCheckbox( $checkbox );
-    cityValue = $('.city-select')[0].value;
-    campValue = $('.camp-select')[0].value;  
-    if( cityValue != '*'){
-      $('.location-select' + cityValue).css('display','block');
-      $('.location-select:not(' + cityValue + ')').val('*');
-      $('.location-select:not(' + cityValue + ')').css('display','none');
-      $('.location-select' + cityValue).prop('disabled', false);
-    }else{
-    	$('.location-select.dallas').css('display','none');
-      $('.location-select.austin-texas').css('display','block');
-      $('.location-select.austin-texas').prop('disabled', 'disabled');
-      $('.location-select').val('*')
+    if($('.city-select')){
+    	cityValue = $('.city-select')[0].value;
+	    if( cityValue != '*'){
+	      $('.location-select' + cityValue).css('display','block');
+	      $('.location-select:not(' + cityValue + ')').val('*');
+	      $('.location-select:not(' + cityValue + ')').css('display','none');
+	      $('.location-select' + cityValue).prop('disabled', false);
+	    }else{
+		$('.location-select.dallas').css('display','none');
+	      $('.location-select.austin-texas').css('display','block');
+	      $('.location-select.austin-texas').prop('disabled', 'disabled');
+	      $('.location-select').val('*')
+	    }
     }
-  	locationValue = $('.location-select'+cityValue)[0].value;
+    
+    campValue = $('.camp-select')[0].value;  
+    
+    locationValue = $('.location-select'+cityValue)[0].value;
     comboFilter = getComboFilter( filters );
     $grid.isotope();
     counterFindCourses();
