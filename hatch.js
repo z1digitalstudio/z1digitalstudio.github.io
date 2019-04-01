@@ -192,8 +192,10 @@ $(function() {
     }
     
     campValue = $('.camp-select')[0].value;  
+    if($('.location-select')[0] != undefined ){
+      locationValue = $('.location-select'+cityValue)[0].value;
+    }
     
-    locationValue = $('.location-select'+cityValue)[0].value;
     comboFilter = getComboFilter( filters );
     $grid.isotope();
     counterFindCourses();
