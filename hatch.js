@@ -176,7 +176,7 @@ $(function() {
   $('#filters-courses').on( 'change', function( event ) {
     var $checkbox = $( event.target );
     manageCheckbox( $checkbox );
-    if($('.city-select')){
+    if($('.city-select')[0] != undefined ){
     	cityValue = $('.city-select')[0].value;
 	    if( cityValue != '*'){
 	      $('.location-select' + cityValue).css('display','block');
