@@ -124,7 +124,7 @@ $(function() {
       },
       opens: 'right',
   });
-	$('.daterangepicker').appendTo('.daterange_container');
+	$('.daterangepicker').appendTo('.filters');
 
   $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
       $(this).val(picker.startDate.format('M-D-YYYY') + ' - ' + picker.endDate.format('M-D-YYYY'));
