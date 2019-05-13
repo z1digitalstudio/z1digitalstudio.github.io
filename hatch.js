@@ -116,7 +116,7 @@ $(document).ready( function() {
 $(function() {
 
   $('input[name="daterange"]').daterangepicker({
-      parentElement: $('.option-set.daterange_container'),
+      standalone: true,
       anchorElement: $('.option-set.daterange_container'),
       autoUpdateInput: false,
       locale: {
