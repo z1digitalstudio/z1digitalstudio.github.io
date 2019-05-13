@@ -117,6 +117,7 @@ $(function() {
 
   $('input[name="daterange"]').daterangepicker({
       autoUpdateInput: false,
+      container:'#filters',
       locale: {
           cancelLabel: 'Clear'
       },
