@@ -73,6 +73,8 @@ $(document).ready( function() {
   var maxR = 15;
   var dateMin;
   var dateMax;
+  var startDate;
+  var endDate;
  
 	
   const $grid = $('.grid').isotope({
@@ -199,6 +201,16 @@ $(function() {
       locationValue = $('.location-select'+cityValue)[0].value;
     }
     
+    startDate = $('#start-date')[0].value;
+    if($('.location-select')[0] != undefined ){
+      dateMin = $('#start-date')[0].value;
+    }
+
+    endDate = $('#end-date')[0].value;
+    if($('.location-select')[0] != undefined ){
+      dateMax = $('#end-date')[0].value;
+    }
+
     comboFilter = getComboFilter( filters );
     $grid.isotope();
     counterFindCourses();
@@ -278,8 +290,15 @@ $(function() {
       }else if(prop == 'date'){
         if(dateMax == undefined && dateMin == undefined){
         	filters[prop] = [];
-        }else{
-        filters[prop] = getDates(dateMin,dateMax);
+        }else if(dateMin != undefined){
+          if(dateMax == ""){
+            var date = new Date()
+            dateMax = date.setMonth(date.getMonth() + 1);
+            filters[prop] = getDates(dateMin,dateMax);
+          }else{
+            filters[prop] = getDates(dateMin,dateMax);
+          }
+        
         }
       
       }
